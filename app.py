@@ -1,4 +1,7 @@
 
+from re import S
+
+
 def checkout(items):
     itemPrice = {"A": 50, "B": 30, "C": 20, "D": 15}
     specialPrice = {"A": 130, "B": 45}
@@ -35,16 +38,85 @@ def checkout(items):
 # checkout("DABABA")
 
 
-def seactAllocation(numberofseats):
-    firstRow = {"1a": 0, "1b": 0, "1c": 0, "1d": 0,
-                "1e": 0, "1f": 0, "1g": 0, "1h": 0}
-    secondRow = {"2a": 0, "2b": 0, "2c": 0,
-                 "2d": 0, "2e": 0, "2f": 0, "2g": 0, "2h": 0}
-    thirdRow = {"3a": 0, "3b": 0, "3c": 0, "3d": 0,
-                "3e": 0, "3f": 0, "3g": 0, "3h": 0}
+def seactAllocation():
 
-    for seat in firstRow:
-        print(seat)
+    seats = [['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'], ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'],
+             ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']]
+
+    ticket = input("Book Tickets???(y/n)")
+
+    while ticket == 'y':
+
+        number_of_seats = int(input("enter no. of sit to be booked: "))
+
+        if number_of_seats == 4:
+            middle_seats = ['c', 'd', 'e', 'f']
+            corner_seats = ['a', 'b', 'g', 'h']
+            k = 0
+            seat = 0
+
+            for seat in range(0, 3):
+                print(seat)
+                available = all(x in seats[seat] for x in middle_seats)
+                if available:
+                    print("Tickets")
+                    for alloted_seats in middle_seats:
+                        print(str(seat+1)+alloted_seats[k])
+                    for remove_seat in range(len(middle_seats)):
+                        seats[seat].remove(middle_seats[remove_seat])
+                    print(seats)
+                    break
+
+                elif all(x in seats[seat] for x in corner_seats):
+                    print('Tickets')
+                    for alloted_seats in corner_seats:
+                        print(str(seat+1)+alloted_seats[k])
+                    for remove_seat in range(len(corner_seats)):
+                        seats[seat].remove(corner_seats[remove_seat])
+                    break
+
+        elif number_of_seats == 3:
+
+            middle_seats = ['c', 'd', 'e']
+            k = 0
+
+            for seat in range(0, 3):
+                available = all(x in seats[seat] for x in middle_seats)
+                if available:
+                    for alloted_seats in middle_seats:
+                        print(str(seat+1)+alloted_seats[k])
+                    for remove_seat in range(len(middle_seats)):
+                        seats[seat].remove(middle_seats[remove_seat])
+                    break
+
+        elif number_of_seats == 2:
+            right_corner = ['a', 'b']
+            left_corner = ['g', 'h']
+            k = 0
+
+            for seat in range(0, 3):
+                available = all(x in seats[seat] for x in right_corner)
+                if available:
+                    for alloted_seats in right_corner:
+                        print(str(seat+1)+alloted_seats[k])
+                    for remove_seat in range(len(right_corner)):
+                        seats[seat].remove(right_corner[remove_seat])
+                    break
+
+                elif all(x in seats[seat] for x in left_corner):
+                    for alloted_seats in left_corner:
+                        print(str(seat+1)+alloted_seats[k])
+                    for remove_seat in range(len(left_corner)):
+                        seats[seat].remove(left_corner[remove_seat])
+                    break
+
+        elif number_of_seats == 1:
+            for seat in range(0, 3):
+                if len(seats[seat]):
+                    print(str(seat+1)+str(seats[seat][0]))
+                    break
+
+            print(seats)
 
 
-seactAllocation(3)
+seactAllocation()
