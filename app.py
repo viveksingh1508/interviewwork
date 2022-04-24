@@ -48,6 +48,9 @@ def seactAllocation():
     while ticket == 'y':
 
         number_of_seats = int(input("seats to be booked: "))
+        
+        if len(seats[0]) == 0 and len(seats[1]) == 0 and len(seats[2]) == 0:
+            print("Not seats Available")
 
         if number_of_seats == 4:
             middle_seats = ['c', 'd', 'e', 'f']
