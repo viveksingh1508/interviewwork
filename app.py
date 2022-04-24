@@ -43,11 +43,11 @@ def seactAllocation():
     seats = [['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'], ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'],
              ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']]
 
-    ticket = input("Book Tickets???(y/n)")
+    ticket = input("Book Tickets? (y/n)")
 
     while ticket == 'y':
 
-        number_of_seats = int(input("enter no. of sit to be booked: "))
+        number_of_seats = int(input("seats to be booked: "))
 
         if number_of_seats == 4:
             middle_seats = ['c', 'd', 'e', 'f']
